@@ -163,7 +163,7 @@ export default {
     async fetchInput() {
       const res = await fetch(
         'api/energie')
-      const data = await res.text()
+      const data = await res.json()
       console.log(data)
       return data
       
