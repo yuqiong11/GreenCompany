@@ -97,11 +97,11 @@
     </div>
   </div>
 
-  <!-- <div class="calculation">
+  <div class="calculation">
     <p>Ihr Fußabdruck:  
       <span id="result">{{ getResult }} </span>
       kg CO₂ pro Jahr</p>
-  </div> -->
+  </div>
 
 </template>
 
@@ -124,8 +124,8 @@ export default {
       biogas: '',
       gas: '',
       wood: '',
-      districtheat: ''
-    
+      districtheat: '',
+      stored_data: ''
     }
   },
   methods: {
@@ -165,23 +165,28 @@ export default {
         'api/energie')
       const data = await res.json()
       console.log(data)
-      return data
+      return data[0]
       
     },
   },
 
   async created() {
     this.stored_data = await this.fetchInput()
-   
+    this.electricitymix = this.stored_data.electricitymix
+    this.greenpower = this.stored_data.greenpower
+    this.fueloil = this.stored_data.fueloil
+    this.biogas = this.stored_data.biogas
+    this.gas = this.stored_data.gas
+    this.wood = this.stored_data.districtheat
   },
 
-  // computed: {
-  //   getResult() {
-  //     var result = this.electricitymix*728.69 + this.fueloil*66.88 + this.biogas*53.06 +
-  //                  this.gas*53.06 + this.wood*93.8 + this.districtheat*66.33*0.003409 
-  //     return result.toFixed(2)
-  //   }
-  // }
+  computed: {
+    getResult() {
+      var result = this.electricitymix*728.69 + this.fueloil*66.88 + this.biogas*53.06 +
+                   this.gas*53.06 + this.wood*93.8 + this.districtheat*66.33*0.003409 
+      return result.toFixed(2)
+    }
+  }
 }
 
 </script>
