@@ -1,6 +1,5 @@
 <template>
-    <!-- <a href="/energie" class="btn btn-primary col-md-1 offset-md-1" role="Button"> {{ SwitchCommand }}</a> -->
-    <router-link type="submit" class="btn btn-primary" role="Button" :to= "link"> {{ direction }}</router-link>
+    <router-link @click="onClick()"   class="btn btn-primary" role="Button" :to= "link"> {{ direction }}</router-link>
 </template>
 
 <script>
@@ -11,5 +10,11 @@ export default {
         link: String,
         direction: String
     },
+    methods: {
+        onClick() {
+            this.$emit('update-input')
+        }
+    }
+
 }
 </script>

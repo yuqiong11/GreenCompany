@@ -6,7 +6,8 @@
   <div>
     <h2>Stromverbrauch</h2>
   </div>
-  <form @submit="onSubmit">
+  
+  <form >
     <div class="mb-3 row">
       <label for="inputStrommix" class="col-md-3 col-form-label">Strommix</label>
       <div class="col-md-6">
@@ -26,12 +27,12 @@
         </div>        
       </div>  
     </div>
-  </form>
 
-  <div>
-    <h2>Heizkosten</h2>
-  </div>
-  <form @submit="onSubmit">
+
+    <div>
+      <h2>Heizkosten</h2>
+    </div>
+
     <div class="mb-3 row">
       <label for="inputStrommix" class="col-md-3 col-form-label">Heizöl</label>
       <div class="col-md-6">
@@ -83,25 +84,27 @@
     </div>
   </form>
 
-  <div class="container">
-    <div class="row justify-content-evenly">
-      <div class="col-md-1 offset-md-1">
-        <SwitchButton link="/" direction="PREVIOUS" @update-input="updateInput" />
-      </div>
-      <div class="col-md-1 offset-md-1">
-        <ResetButton @reset-input="resetInput" />
-      </div>
-      <div class="col-md-1 offset-md-1">
-        <SwitchButton link="/energie" direction="NEXT" @update-input="updateInput" />
+    <div class="container">
+      <div class="row justify-content-evenly">
+        <div class="col-md-1 offset-md-1">
+          <SwitchButton link="/" direction="PREVIOUS" @update-input="updateInput" />
+        </div>
+        <div class="col-md-1 offset-md-1">
+          <ResetButton @reset-input="resetInput" @update-input="updateInput"/>
+        </div>
+        <div class="col-md-1 offset-md-1">
+          <SwitchButton link="/energie" direction="NEXT" @update-input="updateInput" />
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- <div class="calculation">
+  
+
+  <div class="calculation">
     <p>Ihr Fußabdruck:  
       <span id="result">{{ getResult }} </span>
       kg CO₂ pro Jahr</p>
-  </div> -->
+  </div>
 
 </template>
 
@@ -124,8 +127,8 @@ export default {
       biogas: '',
       gas: '',
       wood: '',
-      districtheat: ''
-    
+      districtheat: '',
+      stored_data: ''
     }
   },
   methods: {
@@ -138,7 +141,8 @@ export default {
       this.wood = '',
       this.districtheat = ''     
     },
-    onSubmit() {
+
+    async updateInput() {
       const newData = {
         electricitymix: this.electricitymix,
         greenpower: this.greenpower,
@@ -148,18 +152,16 @@ export default {
         wood: this.wood,
         districtheat: this.districtheat
       }
-
-      return newData
-    },
-    async updateInput() {
       await fetch('api/energie', {
         method: 'PUT',
         headers: {
           'Content-type': 'application/json',
         },
-        body: JSON.stringify(this.onSubmit)
+        body: JSON.stringify(newData)
       })
+
     },
+
     async fetchInput() {
       const res = await fetch(
         'api/energie')
@@ -172,16 +174,22 @@ export default {
 
   async created() {
     this.stored_data = await this.fetchInput()
-   
+    this.electricitymix = this.stored_data.electricitymix
+    this.greenpower = this.stored_data.greenpower
+    this.fueloil = this.stored_data.fueloil
+    this.biogas = this.stored_data.biogas
+    this.gas = this.stored_data.gas
+    this.wood = this.stored_data.wood
+    this.districtheat = this.stored_data.districtheat
   },
 
-  // computed: {
-  //   getResult() {
-  //     var result = this.electricitymix*728.69 + this.fueloil*66.88 + this.biogas*53.06 +
-  //                  this.gas*53.06 + this.wood*93.8 + this.districtheat*66.33*0.003409 
-  //     return result.toFixed(2)
-  //   }
-  // }
+  computed: {
+    getResult() {
+      var result = this.electricitymix*728.69 + this.fueloil*66.88 + this.biogas*53.06 +
+                   this.gas*53.06 + this.wood*93.8 + this.districtheat*66.33*0.003409 
+      return result.toFixed(2)
+    }
+  }
 }
 
 </script>
