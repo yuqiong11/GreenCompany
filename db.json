@@ -8,9 +8,9 @@
     "electricitymix": "500",
     "greenpower": "",
     "fueloil": "",
-    "biogas": "200",
+    "biogas": "",
     "gas": "",
-    "wood": "",
+    "wood": "500",
     "districtheat": ""
   }
 }

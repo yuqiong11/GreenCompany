@@ -82,7 +82,7 @@
         </div>       
       </div>  
     </div>
-  
+  </form>
 
     <div class="container">
       <div class="row justify-content-evenly">
@@ -98,7 +98,7 @@
       </div>
     </div>
 
-  </form>
+  
 
   <div class="calculation">
     <p>Ihr Fußabdruck:  
