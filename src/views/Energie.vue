@@ -98,12 +98,14 @@
       </div>
     </div>
 
-  
-
   <div class="calculation">
     <p>Ihr Fußabdruck:  
       <span id="result">{{ getResult }} </span>
       kg CO₂ pro Jahr</p>
+  </div>
+
+  <div>
+    <BarChart />
   </div>
 
 </template>
@@ -112,36 +114,39 @@
 // @ is an alias to /src
 import ResetButton from '../components/ResetButton'
 import SwitchButton from '../components/SwitchButton'
+import BarChart from '../components/BarChart'
 
 export default {
   name: 'energy',
   components: {
     ResetButton,
     SwitchButton,
+    BarChart
   },
   data() {
     return {
-      electricitymix: '',
-      greenpower: '',
-      fueloil: '',
-      biogas: '',
-      gas: '',
-      wood: '',
-      districtheat: '',
-      stored_data: ''
+      electricitymix: 0,
+      greenpower: 0,
+      fueloil: 0,
+      biogas: 0,
+      gas: 0,
+      wood: 0,
+      districtheat: 0,
+      stored_data: 0,
+      }
     }
-  },
+  ,
+
   methods: {
     resetInput() {
-      this.electricitymix = '',
-      this.greenpower = '',
-      this.fueloil = '',
-      this.biogas = '',
-      this.gas = '',
-      this.wood = '',
-      this.districtheat = ''     
+      this.electricitymix = 0,
+      this.greenpower = 0,
+      this.fueloil = 0,
+      this.biogas = 0,
+      this.gas = 0,
+      this.wood = 0,
+      this.districtheat = 0     
     },
-
     async updateInput() {
       const newData = {
         electricitymix: this.electricitymix,
@@ -159,9 +164,7 @@ export default {
         },
         body: JSON.stringify(newData)
       })
-
     },
-
     async fetchInput() {
       const res = await fetch(
         'api/energie')
@@ -182,16 +185,15 @@ export default {
     this.wood = this.stored_data.wood
     this.districtheat = this.stored_data.districtheat
   },
-
   computed: {
     getResult() {
       var result = this.electricitymix*728.69 + this.fueloil*66.88 + this.biogas*53.06 +
-                   this.gas*53.06 + this.wood*93.8 + this.districtheat*66.33*0.003409 
+                   this.gas*53.06 + this.wood*93.8 + this.districtheat*66.33*0.003409
+      console.log(result) 
       return result.toFixed(2)
     }
   }
 }
-
 </script>
 
 <style scoped>
@@ -199,7 +201,6 @@ export default {
   align-content: center;
   margin-top: 100px;
 }
-
 #result {
   color: green;
   font-size: 40px
