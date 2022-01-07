@@ -1,20 +1,23 @@
 <template>
   <div>
-    <DoughnutChart ref="doughnutRef" :chartData="testData" :options="options" />
+    <BarChart ref="doughnutRef" :chartData="testData" :options="options" />
     <button @click="shuffleData">Shuffle</button>
   </div>
 </template>
 
 <script>
-import { shuffle } from 'lodash';
-import { computed, defineComponent, ref } from 'vue';
-import { DoughnutChart } from 'vue-chart-3';
+import { computed, ref } from "vue";
+import { shuffle } from "lodash";
+import { BarChart } from "vue-chart-3";
+import { Chart,  registerables } from "chart.js";
 
-export default defineComponent({
-  name: 'DoughnutChart',
-  components: { DoughnutChart },
+Chart.register(...registerables);
+
+export default ({
+  name: 'BarChart1',
+  components: { BarChart },
   setup() {
-    const data = ref([30, 40, 60, 70, 5]);
+    const data = ref([30, 40, 60, 70, 100]);
     const doughnutRef = ref();
 
     const options = ref({
@@ -25,7 +28,7 @@ export default defineComponent({
         },
         title: {
           display: true,
-          text: 'Chart.js Doughnut Chart',
+          text: 'Chart.js Barchart Chart',
         },
       },
     });
@@ -48,3 +51,26 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
