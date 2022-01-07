@@ -105,7 +105,7 @@
   </div>
 
   <div>
-    <Barchart />
+    <Barchart :num1= "getResult" />
   </div>
 
 

@@ -5,17 +5,22 @@
 </template>
 
 <script>
-import { computed, ref } from "vue";
+import { computed, ref, defineComponent } from "vue";
 import { BarChart } from "vue-chart-3";
 import { Chart,  registerables } from "chart.js";
 
 Chart.register(...registerables);
 
-export default ({
+export default defineComponent({
   name: 'Barchart',
   components: { BarChart },
-  setup() {
-    const data = ref([3000, 4000, 6000, 7000, 10000]);  /* repalce by average */
+  props: {
+    num1 : Number
+  },
+  setup(props) {
+    const data = ref([props.num1, 2000, 5000, 8000, 10000]);  /* replace by average */
+    console.log(data.value)
+
     const barRef = ref();
 
     const options = ref({
