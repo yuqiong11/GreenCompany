@@ -7,10 +7,10 @@
   "Energie": {
     "electricitymix": 0,
     "greenpower": 0,
-    "fueloil": "100",
-    "biogas": "9000",
-    "gas": 0,
+    "fueloil": 0,
+    "biogas": "500",
+    "gas": "10000",
     "wood": 0,
-    "districtheat": "7"
+    "districtheat": 0
   }
 }

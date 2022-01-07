@@ -104,9 +104,9 @@
       kg CO₂ pro Jahr</p>
   </div>
 
-  <div>
-    <BarChart />
-  </div>
+  <!-- <div>
+    <DoughnutChart />
+  </div> -->
 
 </template>
 
@@ -114,14 +114,14 @@
 // @ is an alias to /src
 import ResetButton from '../components/ResetButton'
 import SwitchButton from '../components/SwitchButton'
-import BarChart from '../components/BarChart'
+// import DoughnutChart from '../components/BarChart'
 
 export default {
   name: 'energy',
   components: {
     ResetButton,
     SwitchButton,
-    BarChart
+    // DoughnutChart
   },
   data() {
     return {
