@@ -1,40 +1,38 @@
 <template>
   <div>
-    <BarChart ref="doughnutRef" :chartData="testData" :options="options" />
-    <button @click="shuffleData">Shuffle</button>
+    <BarChart ref="barRef" :chartData="testData" :options="options" />
   </div>
 </template>
 
 <script>
 import { computed, ref } from "vue";
-import { shuffle } from "lodash";
 import { BarChart } from "vue-chart-3";
 import { Chart,  registerables } from "chart.js";
 
 Chart.register(...registerables);
 
 export default ({
-  name: 'BarChart1',
+  name: 'Barchart',
   components: { BarChart },
   setup() {
-    const data = ref([30, 40, 60, 70, 100]);
-    const doughnutRef = ref();
+    const data = ref([3000, 4000, 6000, 7000, 10000]);  /* repalce by average */
+    const barRef = ref();
 
     const options = ref({
       responsive: true,
       plugins: {
         legend: {
-          position: 'top',
+          position: 'bottom',
         },
         title: {
           display: true,
-          text: 'Chart.js Barchart Chart',
+          text: 'dein Fußabdruck zu den von anderem',
         },
       },
     });
 
     const testData = computed(() => ({
-      labels: ['Paris', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
+      labels: ['Energie', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
       datasets: [
         {
           data: data.value,
@@ -43,11 +41,8 @@ export default ({
       ],
     }));
 
-    function shuffleData() {
-      data.value = shuffle(data.value);
-    }
 
-    return { testData, shuffleData, doughnutRef, options };
+    return { testData, barRef, options };
   },
 });
 </script>

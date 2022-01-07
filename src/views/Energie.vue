@@ -99,13 +99,13 @@
     </div>
 
   <div class="calculation">
-    <p>Ihr Fußabdruck:  
+    <p>Dein Fußabdruck:  
       <span id="result">{{ getResult }} </span>
       kg CO₂ pro Jahr</p>
   </div>
 
   <div>
-    <BarChart1 />
+    <Barchart />
   </div>
 
 
@@ -115,14 +115,14 @@
 // @ is an alias to /src
 import ResetButton from '../components/ResetButton'
 import SwitchButton from '../components/SwitchButton'
-import BarChart1 from '../components/BarChart'
+import Barchart from '../components/BarChart'
 
 export default {
   name: 'energy',
   components: {
     ResetButton,
     SwitchButton,
-    BarChart1
+    Barchart
   },
   data() {
     return {

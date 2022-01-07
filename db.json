@@ -8,8 +8,8 @@
     "electricitymix": 0,
     "greenpower": 0,
     "fueloil": 0,
-    "biogas": "500",
-    "gas": "10000",
+    "biogas": "50",
+    "gas": "100",
     "wood": 0,
     "districtheat": 0
   }
