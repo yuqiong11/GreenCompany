@@ -66,7 +66,6 @@ import SwitchButton from '../components/SwitchButton'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import { Popover } from "bootstrap"
-
 export default {
   name: 'floorspace',
   components: {
@@ -87,15 +86,14 @@ export default {
       this.stuffnum = 0,
       this.workingdays = 0
     },
-
   },
   mounted() {
-
     this.bsPopover = new Popover(document.querySelector('.popover-dismiss'), {
       trigger: 'focus',
       placement: 'top'
     })
   }
 }
-
 </script>
+
+
