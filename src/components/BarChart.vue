@@ -2,27 +2,25 @@
   <div>
     <BarChart ref="barRef" :chartData="testData" :options="options" />
   </div>
+
+
 </template>
 
 <script>
-import { computed, ref, defineComponent } from "vue";
+import { computed, ref } from "vue";
 import { BarChart } from "vue-chart-3";
 import { Chart,  registerables } from "chart.js";
-
 Chart.register(...registerables);
-
-export default defineComponent({
+export default ({
   name: 'Barchart',
   components: { BarChart },
   props: {
-    num1 : Number
+    chartdata: String,
   },
+  
   setup(props) {
-    const data = ref([props.num1, 2000, 5000, 8000, 10000]);  /* replace by average */
-    console.log(data.value)
-
+    // const data = ref(props.chartdata);  /* replace by average */
     const barRef = ref();
-
     const options = ref({
       responsive: true,
       plugins: {
@@ -35,17 +33,15 @@ export default defineComponent({
         },
       },
     });
-
     const testData = computed(() => ({
       labels: ['Energie', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
       datasets: [
         {
-          data: data.value,
+          data: [props.chartdata, 40000, 50000, 60000, 70000],
           backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
         },
       ],
     }));
-
 
     return { testData, barRef, options };
   },
@@ -60,16 +56,13 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
 }
-
 #nav {
   padding: 30px;
 }
-
 #nav a {
   font-weight: bold;
   color: #2c3e50;
 }
-
 #nav a.router-link-exact-active {
   color: #42b983;
 }

@@ -105,7 +105,7 @@
   </div>
 
   <div>
-    <Barchart :num1= "getResult" />
+    <Barchart  :chartdata='getResult'/>
   </div>
 
 
@@ -122,8 +122,9 @@ export default {
   components: {
     ResetButton,
     SwitchButton,
-    Barchart
+    Barchart,
   },
+
   data() {
     return {
       electricitymix: 0,
@@ -137,6 +138,14 @@ export default {
       }
     }
   ,
+    computed: {
+    getResult() {
+      var result = this.electricitymix*728.69 + this.fueloil*66.88 + this.biogas*53.06 +
+                   this.gas*53.06 + this.wood*93.8 + this.districtheat*66.33*0.003409
+
+      return result.toFixed(2)
+    }
+  },
 
   methods: {
     resetInput() {
@@ -186,14 +195,7 @@ export default {
     this.wood = this.stored_data.wood
     this.districtheat = this.stored_data.districtheat
   },
-  computed: {
-    getResult() {
-      var result = this.electricitymix*728.69 + this.fueloil*66.88 + this.biogas*53.06 +
-                   this.gas*53.06 + this.wood*93.8 + this.districtheat*66.33*0.003409
-      console.log(result) 
-      return result.toFixed(2)
-    }
-  }
+
 }
 </script>
 
