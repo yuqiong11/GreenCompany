@@ -15,7 +15,7 @@ export default ({
   name: 'Barchart',
   components: { BarChart },
   props: {
-    chartdata: String,
+    chartdata_c1: String,
   },
   
   setup(props) {
@@ -25,6 +25,7 @@ export default ({
       responsive: true,
       plugins: {
         legend: {
+          display: false,
           position: 'bottom',
         },
         title: {
@@ -37,8 +38,8 @@ export default ({
       labels: ['Energie', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
       datasets: [
         {
-          data: [props.chartdata, 40000, 50000, 60000, 70000],
-          backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
+          data: [props.chartdata_c1, 40000, 50000, 60000, 70000],
+          backgroundColor: ['#CEEFBD', '#C6EF8C', '#ADDE63', '#94D639', '#7BC618'],
         },
       ],
     }));
