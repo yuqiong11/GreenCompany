@@ -52,7 +52,7 @@
           <ResetButton @reset-input="resetInput" />
         </div>
         <div class="col-md-1 offset-md-3">
-          <SwitchButton link="/energie" direction="NEXT" />
+          <SwitchButton link="/energie" direction="NEXT" @update-input="updateInput"/>
         </div>       
       </div>
   </div>
@@ -74,18 +74,45 @@ export default {
   },
   data() {
     return {
-      floorspace: '',
-      stuffnum: 0,
+      floorspace: null,
+      stuffnum: null,
       workingdays: 0,
       bsPopover: null,
     }
   },
   methods: {
     resetInput() {
-      this.floorspace = '',
+      this.floorspace = 0,
       this.stuffnum = 0,
       this.workingdays = 0
     },
+    async updateInput() {
+      const newData = {
+        floorspace: this.floorspace,
+        stuffnum: this.stuffnum,
+        workingdays: this.workingdays,
+      }
+      await fetch('api/grunddaten', {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(newData)
+      })
+    },
+    async fetchInput() {
+      const res = await fetch(
+        'api/grunddaten')
+      const data = await res.json()
+      return data    
+    },
+  },
+  
+  async created() {
+    const stored_data = await this.fetchInput()
+    this.floorspace = stored_data.floorspace
+    this.stuffnum = stored_data.stuffnum
+    this.workingdays = stored_data.workingdays
   },
   mounted() {
     this.bsPopover = new Popover(document.querySelector('.popover-dismiss'), {

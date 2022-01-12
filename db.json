@@ -1,16 +1,16 @@
 {
   "Grunddaten": {
-    "floorspace": 1000,
-    "stuffnum": 0,
-    "workingdays": 0
+    "floorspace": "100",
+    "stuffnum": 30,
+    "workingdays": "137"
   },
   "Energie": {
-    "electricitymix": "0",
+    "electricitymix": 0,
     "greenpower": 0,
     "fueloil": 0,
-    "biogas": "50",
-    "gas": "",
+    "biogas": 50,
+    "gas": 0,
     "wood": 0,
-    "districtheat": "50000"
+    "districtheat": "5000"
   }
 }

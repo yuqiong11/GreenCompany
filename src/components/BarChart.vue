@@ -30,7 +30,7 @@ export default ({
         },
         title: {
           display: true,
-          text: 'dein Fußabdruck zu den von anderem',
+          text: 'dein Fußabdruck zu den von anderen',
         },
       },
     });
