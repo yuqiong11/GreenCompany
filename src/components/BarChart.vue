@@ -19,7 +19,7 @@ export default ({
   },
   
   setup(props) {
-    // const data = ref(props.chartdata);  /* replace by average */
+    const average_co2 = ref([1000, 2000, 3000, 4000, 5000]);
     const barRef = ref();
     const options = ref({
       responsive: true,
@@ -30,7 +30,7 @@ export default ({
         },
         title: {
           display: true,
-          text: 'dein Fußabdruck zu den von anderen',
+          text: 'dein Fußabdruck kg CO2/year',
         },
       },
     });
@@ -38,7 +38,11 @@ export default ({
       labels: ['Energie', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
       datasets: [
         {
-          data: [props.chartdata_c1, 40000, 50000, 60000, 70000],
+          data: [props.chartdata_c1, 4000, 5000, 6000, 7000],
+          backgroundColor: ['#CEEFBD', '#C6EF8C', '#ADDE63', '#94D639', '#7BC618'],
+        },
+        {
+          data: average_co2.value,
           backgroundColor: ['#CEEFBD', '#C6EF8C', '#ADDE63', '#94D639', '#7BC618'],
         },
       ],

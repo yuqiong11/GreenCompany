@@ -93,7 +93,7 @@
           <ResetButton @reset-input="resetInput" @update-input="updateInput"/>
         </div>
         <div class="col-md-1 offset-md-1">
-          <SwitchButton link="/energie" direction="NEXT" @update-input="updateInput" />
+          <SwitchButton link="/energy" direction="NEXT" @update-input="updateInput" />
         </div>
       </div>
     </div>
@@ -104,7 +104,7 @@
       kg CO₂ pro Jahr</p>
   </div>
 
-  <div>
+  <div class="flex-container">
     <Barchart  :chartdata_c1='getResult'/>
   </div>
 
@@ -167,7 +167,7 @@ export default {
         wood: this.wood,
         districtheat: this.districtheat
       }
-      await fetch('api/energie', {
+      await fetch('api/energy', {
         method: 'PUT',
         headers: {
           'Content-type': 'application/json',
@@ -177,7 +177,7 @@ export default {
     },
     async fetchInput() {
       const res = await fetch(
-        'api/energie')
+        'api/energy')
       const data = await res.json()
       return data
       
@@ -202,6 +202,10 @@ export default {
 .calculation {
   align-content: center;
   margin-top: 100px;
+}
+.flex-container {
+  display:flex;
+  justify-content: center;
 }
 #result {
   color: green;

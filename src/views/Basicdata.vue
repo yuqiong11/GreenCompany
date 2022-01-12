@@ -52,7 +52,7 @@
           <ResetButton @reset-input="resetInput" />
         </div>
         <div class="col-md-1 offset-md-3">
-          <SwitchButton link="/energie" direction="NEXT" @update-input="updateInput"/>
+          <SwitchButton link="/energy" direction="NEXT" @update-input="updateInput"/>
         </div>       
       </div>
   </div>
@@ -92,7 +92,7 @@ export default {
         stuffnum: this.stuffnum,
         workingdays: this.workingdays,
       }
-      await fetch('api/grunddaten', {
+      await fetch('api/basicdata', {
         method: 'PUT',
         headers: {
           'Content-type': 'application/json',
@@ -102,7 +102,7 @@ export default {
     },
     async fetchInput() {
       const res = await fetch(
-        'api/grunddaten')
+        'api/basicdata')
       const data = await res.json()
       return data    
     },

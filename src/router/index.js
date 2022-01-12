@@ -1,19 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Grunddaten from '../views/Grunddaten.vue'
-import Energie from '../views/Energie.vue'
+import Basicdata from '../views/Basicdata.vue'
+import Energy from '../views/Energy.vue'
+import Mobility from '../views/Mobility.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Grunddaten',
-    component: Grunddaten,
+    name: 'Basicdata',
+    component: Basicdata,
     
   },
   {
-    path: '/energie',
-    name: 'Energie',
-    component: Energie,
-    // props: true
+    path: '/energy',
+    name: 'Energy',
+    component: Energy,
+  },
+  {
+    path: '/mobility',
+    name: 'Mobility',
+    component: Mobility,
   }
 ]
 
