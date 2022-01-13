@@ -93,7 +93,7 @@
           <ResetButton @reset-input="resetInput" @update-input="updateInput"/>
         </div>
         <div class="col-md-1 offset-md-1">
-          <SwitchButton link="/energy" direction="NEXT" @update-input="updateInput" />
+          <SwitchButton link="/mobility" direction="NEXT" @update-input="updateInput" />
         </div>
       </div>
     </div>

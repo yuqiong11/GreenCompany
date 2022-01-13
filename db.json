@@ -12,5 +12,12 @@
     "gas": 0,
     "wood": 0,
     "districtheat": 0
+  },
+  "Mobility": {
+    "avg_distance": 0,
+    "car": 0,
+    "bike": 0,
+    "pub_transport": 0,
+    "home": 0
   }
 }
