@@ -9,15 +9,15 @@
     "greenpower": 0,
     "fueloil": 0,
     "biogas": 0,
-    "gas": 0,
+    "gas": "50",
     "wood": 0,
     "districtheat": 0
   },
   "Mobility": {
-    "avg_distance": 0,
-    "car": 0,
-    "bike": 0,
-    "pub_transport": 0,
-    "home": 0
+    "avg_distance": "200",
+    "car": "5",
+    "bike": "10",
+    "pub_transport": "20",
+    "home": null
   }
 }

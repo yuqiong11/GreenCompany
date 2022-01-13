@@ -112,18 +112,9 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import ResetButton from '../components/ResetButton'
-import SwitchButton from '../components/SwitchButton'
-import Barchart from '../components/BarChart'
 
 export default {
   name: 'energy',
-  components: {
-    ResetButton,
-    SwitchButton,
-    Barchart,
-  },
 
   data() {
     return {

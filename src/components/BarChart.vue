@@ -16,6 +16,7 @@ export default ({
   components: { BarChart },
   props: {
     chartdata_c1: String,
+    chartdata_c2: String,
   },
   
   setup(props) {
@@ -25,8 +26,9 @@ export default ({
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
+
         },
         title: {
           display: true,
@@ -35,15 +37,17 @@ export default ({
       },
     });
     const testData = computed(() => ({
-      labels: ['Energie', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
+      labels: ['Energie', 'Arbeitsweg', 'Toulon', 'Perpignan', 'Autre'],
       datasets: [
         {
-          data: [props.chartdata_c1, 4000, 5000, 6000, 7000],
+          label: 'Deine Daten',
+          data: [props.chartdata_c1, props.chartdata_c2, 5000, 6000, 7000],
           backgroundColor: ['#CEEFBD', '#C6EF8C', '#ADDE63', '#94D639', '#7BC618'],
         },
         {
+          label: 'Durchschnittliche',
           data: average_co2.value,
-          backgroundColor: ['#CEEFBD', '#C6EF8C', '#ADDE63', '#94D639', '#7BC618'],
+          backgroundColor: ['#ffa343'],
         },
       ],
     }));

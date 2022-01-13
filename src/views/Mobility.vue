@@ -76,27 +76,20 @@
 
     <div class="calculation">
         <p>Dein Fußabdruck:  
-        <span id="result">{{ getResult }} </span>
+        <span id="result">{{ getResult_m }} </span>
         kg CO₂ pro Jahr</p>
     </div>
 
     <div class="flex-container">
-        <Barchart  :chartdata_c1='getResult'/>
+        <Barchart  :chartdata_c2='getResult_m'/>
     </div>
 
 </template>
 
 <script>
-import ResetButton from '../components/ResetButton'
-import SwitchButton from '../components/SwitchButton'
-import Barchart from '../components/BarChart'
 export default {
     name: 'Mobility',
-    Component:{
-        ResetButton,
-        SwitchButton,
-        Barchart
-    },
+
     data () {
         return {
             avg_distance: null,
@@ -107,7 +100,7 @@ export default {
         }
     },
     computed: {
-    getResult() {
+    getResult_m() {
       var result = this.avg_distance*(this.car*0.211887577+this.bike*0+this.pub_transport*0.08885608+this.home*0)
       return result.toFixed(2)
         }
