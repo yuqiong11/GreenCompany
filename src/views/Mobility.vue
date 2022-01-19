@@ -96,7 +96,7 @@ export default {
             car: null,
             bike: null,
             pub_transport: null,
-            home: null
+            home: null,
         }
     },
     computed: {
@@ -111,7 +111,8 @@ export default {
       this.car = null,
       this.bike = null,
       this.pub_transport = null,
-      this.home = null
+      this.home = null,
+      this.result_m = 0
     },
     async updateInput() {
       const newData = {
@@ -119,7 +120,8 @@ export default {
         car: this.car,
         bike: this.bike,
         pub_transport: this.pub_transport,
-        home: this.home
+        home: this.home,
+        result_m: this.getResult_m
       }
       await fetch('api/mobility', {
         method: 'PUT',

@@ -9,15 +9,17 @@
     "greenpower": 0,
     "fueloil": 0,
     "biogas": 0,
-    "gas": "50",
+    "gas": 0,
     "wood": 0,
-    "districtheat": 0
+    "districtheat": "200",
+    "result_e": "45.22"
   },
   "Mobility": {
-    "avg_distance": "200",
-    "car": "5",
+    "avg_distance": "20",
+    "car": "50",
     "bike": "10",
     "pub_transport": "20",
-    "home": null
+    "home": "100",
+    "result_m": "247.43"
   }
 }

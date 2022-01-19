@@ -3,6 +3,12 @@
     <BarChart ref="barRef" :chartData="testData" :options="options" />
   </div>
 
+  <!-- <div>  <h1> c1-active {{ chartdata_c1 }}</h1></div>
+  <div>  <h1> c1-archive {{ c1 }}</h1></div>
+
+  <div><h1> c2-active {{ chartdata_c2 }}</h1></div>
+  <div><h1> c2-archive {{ c2 }}</h1></div> -->
+
 
 </template>
 
@@ -21,6 +27,8 @@ export default ({
   
   setup(props) {
     const average_co2 = ref([1000, 2000, 3000, 4000, 5000]);
+    const c1 = ref(0);
+    const c2 = ref(0);
     const barRef = ref();
     const options = ref({
       responsive: true,
@@ -36,12 +44,33 @@ export default ({
         },
       },
     });
+
+    // fetch data from 2 api endpoints
+    const fetchData = async () => {
+      let firstCall = fetch('api/energy');
+      let secondCall = fetch('api/mobility');
+
+      Promise.all([firstCall, secondCall])
+       .then(values => Promise.all(values.map(value => value.json())))
+       .then(finalValues => {
+         c1.value = finalValues[0].result_e;
+         c2.value = finalValues[1].result_m;
+       })
+    };
+
+
     const testData = computed(() => ({
       labels: ['Energie', 'Arbeitsweg', 'Toulon', 'Perpignan', 'Autre'],
       datasets: [
         {
           label: 'Deine Daten',
-          data: [props.chartdata_c1, props.chartdata_c2, 5000, 6000, 7000],
+          data: [
+            props.chartdata_c1 ? props.chartdata_c1 : c1.value, 
+            props.chartdata_c2 ? props.chartdata_c2 : c2.value,
+            props.chartdata_c3 ? props.chartdata_c3 : 1000,
+            props.chartdata_c4 ? props.chartdata_c4 : 2000,
+            props.chartdata_c5 ? props.chartdata_c5 : 3000,
+          ],
           backgroundColor: ['#CEEFBD', '#C6EF8C', '#ADDE63', '#94D639', '#7BC618'],
         },
         {
@@ -52,8 +81,12 @@ export default ({
       ],
     }));
 
-    return { testData, barRef, options };
+    return { c1, c2, testData, barRef, options, fetchData };
   },
+
+  created() {
+    this.fetchData()
+  }
 });
 </script>
 

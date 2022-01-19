@@ -146,7 +146,8 @@ export default {
       this.biogas = 0,
       this.gas = 0,
       this.wood = 0,
-      this.districtheat = 0     
+      this.districtheat = 0,
+      this.result_e = 0     
     },
     async updateInput() {
       const newData = {
@@ -156,7 +157,8 @@ export default {
         biogas: this.biogas,
         gas: this.gas,
         wood: this.wood,
-        districtheat: this.districtheat
+        districtheat: this.districtheat,
+        result_e: this.getResult
       }
       await fetch('api/energy', {
         method: 'PUT',
