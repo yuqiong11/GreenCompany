@@ -10,11 +10,11 @@ export default {
         link: String,
         direction: String,
     },
-    methods: {
-        onClick() {
-            this.$emit('update-input')
-        }
-    }
+    // methods: {
+    //     onClick() {
+    //         this.$emit('send-alert')
+    //     }
+    // }
 
 }
 </script>

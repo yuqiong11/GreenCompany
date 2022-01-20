@@ -52,7 +52,7 @@
           <ResetButton @reset-input="resetInput" />
         </div>
         <div class="col-md-1 offset-md-3">
-          <SwitchButton link="/energy" direction="NEXT" @update-input="updateInput"/>
+          <SwitchButton link="/energy" direction="NEXT" />
         </div>       
       </div>
   </div>
@@ -79,6 +79,16 @@ export default {
       workingdays: 0,
       bsPopover: null,
     }
+  },
+  computed: {
+    watchData() {
+      return [this.floorspace, this.stuffnum, this.workingdays]
+    }
+  },
+  watch: {
+      watchData() {
+          this.updateInput()
+        }
   },
   methods: {
     resetInput() {

@@ -72,13 +72,13 @@
     <div class="container">
       <div class="row justify-content-evenly">
         <div class="col-md-1 offset-md-1">
-          <SwitchButton link="/mobility2" direction="PREVIOUS"  @update-input="updateInput" />
+          <SwitchButton link="/mobility2" direction="PREVIOUS" />
         </div>
         <div class="col-md-1 offset-md-1">
-          <ResetButton @reset-input="resetInput" @update-input="updateInput"/>
+          <ResetButton @reset-input="resetInput" />
         </div>
         <div class="col-md-1 offset-md-1">
-          <SwitchButton link="/mobility3" direction="NEXT" @update-input="updateInput" />
+          <SwitchButton link="/mobility3" direction="NEXT" />
         </div>
       </div>
     </div>
@@ -112,9 +112,16 @@ export default {
     computed: {
       getResult_m3() {
         var result = this.stuffnum*this.businesstrips*this.avg_distance*(this.car*0.211887577+this.plane*0.081399626+this.pub_transport*0.070214945)*0.01
-        return result.toFixed(2)
-      
+        return result.toFixed(2)    
+      },
+      watchData() {
+        return [this.stuffnum, this.businesstrips, this.avg_distance, this.car, this.plane, this.pub_transport]
       }
+    },
+    watch: {
+        watchData() {
+            this.updateInput()
+        }
     },
   methods: {
     resetInput() {

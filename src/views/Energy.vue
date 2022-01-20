@@ -87,13 +87,13 @@
     <div class="container">
       <div class="row justify-content-evenly">
         <div class="col-md-1 offset-md-1">
-          <SwitchButton link="/" direction="PREVIOUS" @update-input="updateInput" />
+          <SwitchButton link="/" direction="PREVIOUS" />
         </div>
         <div class="col-md-1 offset-md-1">
-          <ResetButton @reset-input="resetInput" @update-input="updateInput"/>
+          <ResetButton @reset-input="resetInput" />
         </div>
         <div class="col-md-1 offset-md-1">
-          <SwitchButton link="/mobility" direction="NEXT" @update-input="updateInput" />
+          <SwitchButton link="/mobility" direction="NEXT" />
         </div>
       </div>
     </div>
@@ -129,14 +129,22 @@ export default {
       }
     }
   ,
-    computed: {
+  computed: {
     getResult() {
       var result = this.electricitymix*728.69 + this.fueloil*66.88 + this.biogas*53.06 +
                    this.gas*53.06 + this.wood*93.8 + this.districtheat*66.33*0.003409
 
       return result.toFixed(2)
+    },
+    watchData() {
+      return [this.electricitymix, this.greenpower, this.fueloil, this.biogas, this.gas, this.wood, this.districtheat]
     }
   },
+  watch: {
+      watchData() {
+          this.updateInput()
+        }
+    },
 
   methods: {
     resetInput() {

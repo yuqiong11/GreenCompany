@@ -63,13 +63,13 @@
     <div class="container">
       <div class="row justify-content-evenly">
         <div class="col-md-1 offset-md-1">
-          <SwitchButton link="/energy" direction="PREVIOUS" :routing_permit=routing @update-input="updateInput" />
+          <SwitchButton link="/energy" direction="PREVIOUS" />
         </div>
         <div class="col-md-1 offset-md-1">
-          <ResetButton @reset-input="resetInput" @update-input="updateInput"/>
+          <ResetButton @reset-input="resetInput" />
         </div>
         <div class="col-md-1 offset-md-1">
-          <SwitchButton link="/mobility2" direction="NEXT" @update-input="updateInput" />
+          <SwitchButton link="/mobility2" direction="NEXT" />
         </div>
       </div>
     </div>
@@ -104,9 +104,16 @@ export default {
     computed: {
       getResult_m() {
         var result = this.stuffnum*this.workingdays*this.avg_distance*(this.car*0.211887577+this.bike*0+this.pub_transport*0.08885608+this.home*0)*0.01
-        return result.toFixed(2)
-      
+        return result.toFixed(2)     
+      },
+      watchData() {
+        return [this.avg_distance, this.car, this.bike, this.pub_transport, this.home]
       }
+    },
+    watch: {
+      watchData() {
+          this.updateInput()
+        }
     },
   methods: {
     resetInput() {
