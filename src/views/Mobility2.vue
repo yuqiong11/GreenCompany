@@ -8,6 +8,25 @@
   </div>
 
   <form >
+      <!-- background data -->
+    <div class="mb-3 row">
+      <label for="inputdistance" class="col-md-3 col-form-label">Anzahl</label>
+      <div class="col-md-6">
+        <div class="input-group">
+          <input type="number" class="form-control" v-model="stuffnum" name="stuffnum"  placeholder="e.g. 1000 ">
+        </div>
+      </div>   
+    </div>
+
+    <div class="mb-3 row">
+      <label for="inputdistance" class="col-md-3 col-form-label">Dienstreisen pro Monat</label>
+      <div class="col-md-6">
+        <div class="input-group">
+          <input type="number" class="form-control" v-model="businesstrips" name="businesstrips"  placeholder="e.g. 1000 ">
+        </div>
+      </div>   
+    </div>
+
     <div class="mb-3 row">
       <label for="inputdistance" class="col-md-3 col-form-label">Mittelwert Strecke</label>
       <div class="col-md-6">
@@ -18,6 +37,7 @@
       </div>   
     </div>
 
+    <!-- different transports -->
     <div class="mb-3 row">
       <label for="inputcar" class="col-md-3 col-form-label">Auto</label>
       <div class="col-md-6">
@@ -29,10 +49,10 @@
     </div>
 
     <div class="mb-3 row">
-      <label for="inputbike" class="col-md-3 col-form-label">Fahrrad</label>
+      <label for="inputbike" class="col-md-3 col-form-label">Flugzeug</label>
       <div class="col-md-6">
         <div class="input-group">
-          <input type="number" class="form-control" v-model="bike" name="bike"  placeholder="e.g. 1000" min="0" max="100">
+          <input type="number" class="form-control" v-model="plane" name="plane"  placeholder="e.g. 1000" min="0" max="100">
           <span class="input-group-text">%</span>
         </div>       
       </div>   
@@ -47,89 +67,82 @@
         </div>        
       </div>  
     </div>
-
-    <div class="mb-3 row">
-      <label for="inputhome" class="col-md-3 col-form-label">Home Office</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="number" class="form-control" v-model="home" name="home"  placeholder="e.g. 1000 " min="0" max="100">
-          <span class="input-group-text">%</span>
-        </div>       
-      </div>   
-    </div>
   </form>
 
     <div class="container">
       <div class="row justify-content-evenly">
         <div class="col-md-1 offset-md-1">
-          <SwitchButton link="/energy" direction="PREVIOUS" :routing_permit=routing @update-input="updateInput" />
+          <SwitchButton link="/mobility" direction="PREVIOUS"  @update-input="updateInput" />
         </div>
         <div class="col-md-1 offset-md-1">
           <ResetButton @reset-input="resetInput" @update-input="updateInput"/>
         </div>
         <div class="col-md-1 offset-md-1">
-          <SwitchButton link="/mobility" direction="NEXT" @update-input="updateInput" />
+          <SwitchButton link="/mobility2" direction="NEXT" @update-input="updateInput" />
         </div>
       </div>
     </div>
 
     <div class="calculation">
         <p>Dein Fußabdruck:  
-        <span id="result">{{ getResult_m }} </span>
+        <span id="result">{{ getResult_m2 }} </span>
         kg CO₂ pro Jahr</p>
     </div>
 
     <div class="flex-container">
-        <Barchart  :chartdata_c2='getResult_m'/>
+        <Barchart  :chartdata_c3='getResult_m2'/>
     </div>
 
 </template>
 
 <script>
 export default {
-    name: 'Mobility',
+    name: 'Mobility2',
 
     data () {
         return {
+            stuffnum: null,
+            businesstrips: null,
             avg_distance: null,
             car: null,
-            bike: null,
+            plane: null,
             pub_transport: null,
-            home: null,
         }
     },
     computed: {
-      getResult_m() {
-        var result = this.avg_distance*(this.car*0.211887577+this.bike*0+this.pub_transport*0.08885608+this.home*0)
+      getResult_m2() {
+        var result = this.stuffnum*this.businesstrips*this.avg_distance*(this.car*0.211887577+this.plane*0.081399626+this.pub_transport*0.070214945)*0.01*12
         return result.toFixed(2)
       
       }
     },
   methods: {
     resetInput() {
+      this.stuffnum = null,
+      this.businesstrips = null,
       this.avg_distance = null,
       this.car = null,
-      this.bike = null,
       this.pub_transport = null,
-      this.home = null,
-      this.result_m = 0
+      this.plane = null,
+      this.result_m2 = 0
     },
     async updateInput() {
 
-      if ((this.car + this.bike + this.pub_transport + this.home) != 100) {
-        alert('The total percentages of Auto, Fahrrad, ÖPNV, Home Office should be 100%. Please check your inputs again.')
+      if ((this.car + this.plane + this.pub_transport) != 100) {
+        alert('The total percentages of Auto, Flugzeug, ÖPNV should be 100%. Please check your inputs again.')
         return 
       }
 
       const newData = {
+        stuffnum: this.stuffnum,
+        businesstrips: this.businesstrips,
         avg_distance: this.avg_distance,
         car: this.car,
-        bike: this.bike,
+        plane: this.plane,
         pub_transport: this.pub_transport,
-        home: this.home,
-        result_m: this.getResult_m
+        result_m2: this.getResult_m2
       }
-      await fetch('api/mobility', {
+      await fetch('api/mobility2', {
         method: 'PUT',
         headers: {
           'Content-type': 'application/json',
@@ -139,18 +152,18 @@ export default {
     },
     async fetchInput() {
       const res = await fetch(
-        'api/mobility')
+        'api/mobility2')
       const data = await res.json()
-      return data      
+      this.stuffnum = data.stuffnum
+      this.businesstrips = data.businesstrips
+      this.avg_distance = data.avg_distance
+      this.car = data.car
+      this.plane = data.plane
+      this.pub_transport = data.pub_transport       
     },
   },
   async created() {
-    const stored_data = await this.fetchInput()
-    this.avg_distance = stored_data.avg_distance
-    this.car = stored_data.car
-    this.bike = stored_data.bike
-    this.pub_transport = stored_data.pub_transport
-    this.home = stored_data.home
+    await this.fetchInput()
   },
 }
 </script>

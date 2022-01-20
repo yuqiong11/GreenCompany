@@ -20,6 +20,15 @@
     "bike": 20,
     "pub_transport": 35,
     "home": 40,
-    "result_m": "20.85"
+    "result_m": "215.77"
+  },
+  "Mobility2": {
+    "stuffnum": 1,
+    "businesstrips": 1,
+    "avg_distance": 100,
+    "car": 20,
+    "plane": 30,
+    "pub_transport": 50,
+    "result_m2": "122.29"
   }
 }
