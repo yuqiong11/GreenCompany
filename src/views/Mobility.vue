@@ -69,7 +69,7 @@
           <ResetButton @reset-input="resetInput" @update-input="updateInput"/>
         </div>
         <div class="col-md-1 offset-md-1">
-          <SwitchButton link="/mobility" direction="NEXT" @update-input="updateInput" />
+          <SwitchButton link="/mobility2" direction="NEXT" @update-input="updateInput" />
         </div>
       </div>
     </div>
@@ -97,11 +97,13 @@ export default {
             bike: null,
             pub_transport: null,
             home: null,
+            stuffnum: null,
+            workingdays: null
         }
     },
     computed: {
       getResult_m() {
-        var result = this.avg_distance*(this.car*0.211887577+this.bike*0+this.pub_transport*0.08885608+this.home*0)
+        var result = this.stuffnum*this.workingdays*this.avg_distance*(this.car*0.211887577+this.bike*0+this.pub_transport*0.08885608+this.home*0)*0.01
         return result.toFixed(2)
       
       }
@@ -138,20 +140,46 @@ export default {
         body: JSON.stringify(newData)
       })
     },
-    async fetchInput() {
-      const res = await fetch(
-        'api/mobility')
-      const data = await res.json()
-      return data      
-    },
+    // async fetchInput() {
+    //   const res = await fetch(
+    //     'api/mobility')
+    //   const data = await res.json()
+    //   return data      
+    // },
+    // async fetchInputBasic() {
+    //   const res = await fetch(
+    //     'api/basicdata')
+    //   const data = await res.json()
+    //   return data      
+    // },
+    async fetchData() {
+      let firstCall = fetch('api/mobility');
+      let secondCall = fetch('api/basicdata');
+
+      Promise.all([firstCall, secondCall])
+       .then(values => Promise.all(values.map(value => value.json())))
+       .then(finalValues => {
+          this.avg_distance = finalValues[0].avg_distance
+          this.car = finalValues[0].car
+          this.bike = finalValues[0].bike
+          this.pub_transport = finalValues[0].pub_transport
+          this.home = finalValues[0].home
+          this.stuffnum = finalValues[1].stuffnum
+          this.workingdays = finalValues[1].workingdays
+       })
+    }
   },
   async created() {
-    const stored_data = await this.fetchInput()
-    this.avg_distance = stored_data.avg_distance
-    this.car = stored_data.car
-    this.bike = stored_data.bike
-    this.pub_transport = stored_data.pub_transport
-    this.home = stored_data.home
+    // const stored_data = await this.fetchInput()
+    // this.avg_distance = stored_data.avg_distance
+    // this.car = stored_data.car
+    // this.bike = stored_data.bike
+    // this.pub_transport = stored_data.pub_transport
+    // this.home = stored_data.home
+    // const basic_data = await this.fetchInputBasic()
+    // this.stuffnum = basic_data.stuffnum
+    // this.workingdays = basic_data.workingdays
+    await this.fetchData()
   },
 }
 </script>

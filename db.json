@@ -1,8 +1,8 @@
 {
   "Basicdata": {
-    "floorspace": "100",
-    "stuffnum": 30,
-    "workingdays": "291"
+    "floorspace": "200",
+    "stuffnum": 4.5,
+    "workingdays": "230"
   },
   "Energy": {
     "electricitymix": 0,
@@ -15,11 +15,11 @@
     "result_e": "45.22"
   },
   "Mobility": {
-    "avg_distance": 1000,
-    "car": 10,
+    "avg_distance": 5,
+    "car": 5,
     "bike": 20,
-    "pub_transport": 30,
+    "pub_transport": 35,
     "home": 40,
-    "result_m": "4784.56"
+    "result_m": "20.85"
   }
 }
