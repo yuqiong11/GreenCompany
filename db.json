@@ -15,11 +15,11 @@
     "result_e": "45.22"
   },
   "Mobility": {
-    "avg_distance": "20",
-    "car": "50",
-    "bike": "10",
-    "pub_transport": "20",
-    "home": "100",
-    "result_m": "247.43"
+    "avg_distance": 1000,
+    "car": 10,
+    "bike": 20,
+    "pub_transport": 30,
+    "home": 40,
+    "result_m": "4784.56"
   }
 }

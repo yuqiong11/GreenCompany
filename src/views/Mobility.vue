@@ -13,7 +13,7 @@
       <label for="inputdistance" class="col-md-3 col-form-label">Mittelwert Strecke</label>
       <div class="col-md-6">
         <div class="input-group">
-          <input type="text" class="form-control" v-model="avg_distance" name="avg_distance"  placeholder="e.g. 1000 ">
+          <input type="number" class="form-control" v-model="avg_distance" name="avg_distance"  placeholder="e.g. 1000 ">
           <span class="input-group-text">km</span>
         </div>
       </div>   
@@ -23,7 +23,7 @@
       <label for="inputcar" class="col-md-3 col-form-label">Auto</label>
       <div class="col-md-6">
         <div class="input-group">
-          <input type="text" class="form-control" v-model="car" name="car"  placeholder="e.g. 1000">
+          <input type="number" class="form-control" v-model="car" name="car"  placeholder="e.g. 1000" min="0" max="100">
           <span class="input-group-text">%</span>
         </div>        
       </div>  
@@ -33,7 +33,7 @@
       <label for="inputbike" class="col-md-3 col-form-label">Fahrrad</label>
       <div class="col-md-6">
         <div class="input-group">
-          <input type="text" class="form-control" v-model="bike" name="bike"  placeholder="e.g. 1000">
+          <input type="number" class="form-control" v-model="bike" name="bike"  placeholder="e.g. 1000" min="0" max="100">
           <span class="input-group-text">%</span>
         </div>       
       </div>   
@@ -43,7 +43,7 @@
       <label for="inputpub" class="col-md-3 col-form-label">ÖPNV</label>
       <div class="col-md-6">
         <div class="input-group">
-          <input type="text" class="form-control" v-model="pub_transport" name="pub_transport"  placeholder="e.g. 1000">
+          <input type="number" class="form-control" v-model="pub_transport" name="pub_transport"  placeholder="e.g. 1000" min="0" max="100">
           <span class="input-group-text">%</span>
         </div>        
       </div>  
@@ -53,7 +53,7 @@
       <label for="inputhome" class="col-md-3 col-form-label">Home Office</label>
       <div class="col-md-6">
         <div class="input-group">
-          <input type="text" class="form-control" v-model="home" name="home"  placeholder="e.g. 1000 ">
+          <input type="number" class="form-control" v-model="home" name="home"  placeholder="e.g. 1000 " min="0" max="100">
           <span class="input-group-text">%</span>
         </div>       
       </div>   
@@ -63,7 +63,7 @@
     <div class="container">
       <div class="row justify-content-evenly">
         <div class="col-md-1 offset-md-1">
-          <SwitchButton link="/energy" direction="PREVIOUS" @update-input="updateInput" />
+          <SwitchButton link="/energy" direction="PREVIOUS" :routing_permit=routing @update-input="updateInput" />
         </div>
         <div class="col-md-1 offset-md-1">
           <ResetButton @reset-input="resetInput" @update-input="updateInput"/>
@@ -100,10 +100,11 @@ export default {
         }
     },
     computed: {
-    getResult_m() {
-      var result = this.avg_distance*(this.car*0.211887577+this.bike*0+this.pub_transport*0.08885608+this.home*0)
-      return result.toFixed(2)
-        }
+      getResult_m() {
+        var result = this.avg_distance*(this.car*0.211887577+this.bike*0+this.pub_transport*0.08885608+this.home*0)
+        return result.toFixed(2)
+      
+      }
     },
   methods: {
     resetInput() {
@@ -115,6 +116,12 @@ export default {
       this.result_m = 0
     },
     async updateInput() {
+
+      if ((this.car + this.bike + this.pub_transport + this.home) != 100) {
+        alert('The total percentages of Auto, Fahrrad, ÖPNV, Home Office should be 100%. Please check your inputs again.')
+        return 
+      }
+
       const newData = {
         avg_distance: this.avg_distance,
         car: this.car,
