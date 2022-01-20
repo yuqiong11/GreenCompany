@@ -4,7 +4,7 @@
   </div>
 
   <div>
-      <h2>Dienstreisen-Vielreisende</h2>
+      <h2>Dienstreisen-Normalreisende</h2>
   </div>
 
   <form >
@@ -19,7 +19,7 @@
     </div>
 
     <div class="mb-3 row">
-      <label for="inputdistance" class="col-md-3 col-form-label">Dienstreisen pro Monat</label>
+      <label for="inputdistance" class="col-md-3 col-form-label">Dienstreisen pro Jahr</label>
       <div class="col-md-6">
         <div class="input-group">
           <input type="number" class="form-control" v-model="businesstrips" name="businesstrips"  placeholder="e.g. 1000 ">
@@ -72,7 +72,7 @@
     <div class="container">
       <div class="row justify-content-evenly">
         <div class="col-md-1 offset-md-1">
-          <SwitchButton link="/mobility" direction="PREVIOUS"  @update-input="updateInput" />
+          <SwitchButton link="/mobility2" direction="PREVIOUS"  @update-input="updateInput" />
         </div>
         <div class="col-md-1 offset-md-1">
           <ResetButton @reset-input="resetInput" @update-input="updateInput"/>
@@ -85,19 +85,19 @@
 
     <div class="calculation">
         <p>Dein Fußabdruck:  
-        <span id="result">{{ getResult_m2 }} </span>
+        <span id="result">{{ getResult_m3 }} </span>
         kg CO₂ pro Jahr</p>
     </div>
 
     <div class="flex-container">
-        <Barchart  :chartdata_c3='getResult_m2'/>
+        <Barchart  :chartdata_c4='getResult_m3'/>
     </div>
 
 </template>
 
 <script>
 export default {
-    name: 'Mobility2',
+    name: 'Mobility3',
 
     data () {
         return {
@@ -110,8 +110,8 @@ export default {
         }
     },
     computed: {
-      getResult_m2() {
-        var result = this.stuffnum*this.businesstrips*this.avg_distance*(this.car*0.211887577+this.plane*0.081399626+this.pub_transport*0.070214945)*0.01*12
+      getResult_m3() {
+        var result = this.stuffnum*this.businesstrips*this.avg_distance*(this.car*0.211887577+this.plane*0.081399626+this.pub_transport*0.070214945)*0.01
         return result.toFixed(2)
       
       }
@@ -124,7 +124,7 @@ export default {
       this.car = null,
       this.pub_transport = null,
       this.plane = null,
-      this.result_m2 = 0
+      this.result_m3 = 0
     },
     async updateInput() {
 
@@ -140,9 +140,9 @@ export default {
         car: this.car,
         plane: this.plane,
         pub_transport: this.pub_transport,
-        result_m2: this.getResult_m2
+        result_m3: this.getResult_m3
       }
-      await fetch('api/mobility2', {
+      await fetch('api/mobility3', {
         method: 'PUT',
         headers: {
           'Content-type': 'application/json',
@@ -152,7 +152,7 @@ export default {
     },
     async fetchInput() {
       const res = await fetch(
-        'api/mobility2')
+        'api/mobility3')
       const data = await res.json()
       this.stuffnum = data.stuffnum
       this.businesstrips = data.businesstrips

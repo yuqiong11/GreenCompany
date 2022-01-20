@@ -24,6 +24,7 @@ export default ({
     chartdata_c1: String,
     chartdata_c2: String,
     chartdata_c3: String,
+    chartdata_c4: String,
   },
   
   setup(props) {
@@ -31,6 +32,7 @@ export default ({
     const c1 = ref(0);
     const c2 = ref(0);
     const c3 = ref(0);
+    const c4 = ref(0);
     const barRef = ref();
     const options = ref({
       responsive: true,
@@ -47,24 +49,26 @@ export default ({
       },
     });
 
-    // fetch data from 2 api endpoints
+    // fetch data from multiple api endpoints
     const fetchData = async () => {
       let firstCall = fetch('api/energy');
       let secondCall = fetch('api/mobility');
       let thirdCall = fetch('api/mobility2');
+      let fourthCall = fetch('api/mobility3');
 
-      Promise.all([firstCall, secondCall, thirdCall])
+      Promise.all([firstCall, secondCall, thirdCall, fourthCall])
        .then(values => Promise.all(values.map(value => value.json())))
        .then(finalValues => {
          c1.value = finalValues[0].result_e;
          c2.value = finalValues[1].result_m;
          c3.value = finalValues[2].result_m2;
+         c4.value = finalValues[3].result_m3;
        })
     };
 
 
     const testData = computed(() => ({
-      labels: ['Energie', 'Arbeitsweg', 'Vielreisende', 'Normalreisende', 'Autre'],
+      labels: ['Energie', 'Arbeitsweg', 'Vielreisende', 'Normalreisende', 'Summe'],
       datasets: [
         {
           label: 'Deine Daten',
@@ -72,7 +76,7 @@ export default ({
             props.chartdata_c1 ? props.chartdata_c1 : c1.value, 
             props.chartdata_c2 ? props.chartdata_c2 : c2.value,
             props.chartdata_c3 ? props.chartdata_c3 : c3.value,
-            props.chartdata_c4 ? props.chartdata_c4 : 2000,
+            props.chartdata_c4 ? props.chartdata_c4 : c4.value,
             props.chartdata_c5 ? props.chartdata_c5 : 3000,
           ],
           backgroundColor: ['#CEEFBD', '#C6EF8C', '#ADDE63', '#94D639', '#7BC618'],
@@ -85,7 +89,7 @@ export default ({
       ],
     }));
 
-    return { c1, c2, c3, testData, barRef, options, fetchData };
+    return { c1, c2, c3, c4, testData, barRef, options, fetchData };
   },
 
   created() {

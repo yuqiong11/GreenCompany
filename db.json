@@ -30,5 +30,14 @@
     "plane": 30,
     "pub_transport": 50,
     "result_m2": "122.29"
+  },
+  "Mobility3": {
+    "stuffnum": 3,
+    "businesstrips": 2,
+    "avg_distance": 50,
+    "car": 10,
+    "plane": 10,
+    "pub_transport": 80,
+    "result_m3": "25.65"
   }
 }
