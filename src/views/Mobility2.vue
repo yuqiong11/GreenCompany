@@ -1,8 +1,4 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-  </div>
-
   <div>
       <h2>Dienstreisen-Vielreisende</h2>
   </div>

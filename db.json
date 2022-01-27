@@ -32,12 +32,12 @@
     "result_m2": 99.47
   },
   "Mobility3": {
-    "stuffnum": 15,
+    "stuffnum": 8,
     "businesstrips": 2,
     "avg_distance": 45,
     "car": 10,
     "plane": 10,
     "pub_transport": 80,
-    "result_m3": 115.43
+    "result_m3": 61.56
   }
 }
