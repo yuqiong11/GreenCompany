@@ -28,7 +28,7 @@ export default ({
   },
   
   setup(props) {
-    const average_co2 = ref([1000, 2000, 3000, 4000, 5000]);
+    const average_co2 = ref([1000, 2000, 3000, 4000]);
     const c1 = ref(0);
     const c2 = ref(0);
     const c3 = ref(0);
@@ -68,7 +68,7 @@ export default ({
 
 
     const testData = computed(() => ({
-      labels: ['Energie', 'Arbeitsweg', 'Vielreisende', 'Normalreisende', 'Summe'],
+      labels: ['Energie', 'Arbeitsweg', 'Vielreisende', 'Normalreisende'],
       datasets: [
         {
           label: 'Deine Daten',
@@ -77,8 +77,7 @@ export default ({
             props.chartdata_c2 ? props.chartdata_c2 : c2.value,
             props.chartdata_c3 ? props.chartdata_c3 : c3.value,
             props.chartdata_c4 ? props.chartdata_c4 : c4.value,
-            props.chartdata_c5 ? props.chartdata_c5 : 3000,
-          ],
+            ],
           backgroundColor: ['#CEEFBD', '#C6EF8C', '#ADDE63', '#94D639', '#7BC618'],
         },
         {
