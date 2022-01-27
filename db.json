@@ -2,42 +2,42 @@
   "Basicdata": {
     "floorspace": "180",
     "stuffnum": 12,
-    "workingdays": "206"
+    "workingdays": "238"
   },
   "Energy": {
     "electricitymix": "10",
-    "greenpower": "100",
-    "fueloil": "50",
+    "greenpower": "10",
+    "fueloil": "5",
     "biogas": 0,
     "gas": 0,
     "wood": 0,
-    "districtheat": "20",
-    "result_e": "10635.42"
+    "districtheat": "0",
+    "result_e": 7621.3
   },
   "Mobility": {
-    "avg_distance": 7,
+    "avg_distance": 10,
     "car": 5,
     "bike": 20,
     "pub_transport": 35,
     "home": 40,
-    "result_m": "721.47"
+    "result_m": 1190.78
   },
   "Mobility2": {
     "stuffnum": 5,
     "businesstrips": 1,
-    "avg_distance": 200,
+    "avg_distance": 20,
     "car": 5,
     "plane": 50,
     "pub_transport": 45,
-    "result_m2": "994.69"
+    "result_m2": 99.47
   },
   "Mobility3": {
-    "stuffnum": 33,
+    "stuffnum": 15,
     "businesstrips": 2,
-    "avg_distance": 50,
+    "avg_distance": 45,
     "car": 10,
     "plane": 10,
     "pub_transport": 80,
-    "result_m3": "282.15"
+    "result_m3": 115.43
   }
 }

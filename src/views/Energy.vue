@@ -134,7 +134,7 @@ export default {
       var result = this.electricitymix*728.69 + this.fueloil*66.88 + this.biogas*53.06 +
                    this.gas*53.06 + this.wood*93.8 + this.districtheat*66.33*0.003409
 
-      return result.toFixed(2)
+      return parseFloat(result.toFixed(2))
     },
     watchData() {
       return [this.electricitymix, this.greenpower, this.fueloil, this.biogas, this.gas, this.wood, this.districtheat]

@@ -112,7 +112,7 @@ export default {
     computed: {
       getResult_m2() {
         var result = this.stuffnum*this.businesstrips*this.avg_distance*(this.car*0.211887577+this.plane*0.081399626+this.pub_transport*0.070214945)*0.01*12
-        return result.toFixed(2)     
+        return parseFloat(result.toFixed(2))     
       },
       watchData() {
         return [this.stuffnum, this.businesstrips, this.avg_distance, this.car, this.plane, this.pub_transport]

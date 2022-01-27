@@ -1,5 +1,5 @@
 <template>
-    <router-link  @click="onClick()"   class="btn btn-primary" role="Button" :to= "link"> {{ direction }}</router-link>
+    <router-link  class="btn btn-primary" role="Button" :to= "link"> {{ direction }}</router-link>
 </template>
 
 <script>

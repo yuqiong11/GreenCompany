@@ -21,10 +21,10 @@ export default ({
   name: 'Barchart',
   components: { BarChart },
   props: {
-    chartdata_c1: String,
-    chartdata_c2: String,
-    chartdata_c3: String,
-    chartdata_c4: String,
+    chartdata_c1: Number,
+    chartdata_c2: Number,
+    chartdata_c3: Number,
+    chartdata_c4: Number,
   },
   
   setup(props) {

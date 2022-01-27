@@ -89,7 +89,6 @@
 <script>
 export default {
     name: 'Mobility',
-
     data () {
         return {
             avg_distance: null,
@@ -104,7 +103,7 @@ export default {
     computed: {
       getResult_m() {
         var result = this.stuffnum*this.workingdays*this.avg_distance*(this.car*0.211887577+this.bike*0+this.pub_transport*0.08885608+this.home*0)*0.01
-        return result.toFixed(2)     
+        return parseFloat(result.toFixed(2))     
       },
       watchData() {
         return [this.avg_distance, this.car, this.bike, this.pub_transport, this.home]
@@ -125,12 +124,10 @@ export default {
       this.result_m = 0
     },
     async updateInput() {
-
       if ((this.car + this.bike + this.pub_transport + this.home) != 100) {
         alert('The total percentages of Auto, Fahrrad, ÖPNV, Home Office should be 100%. Please check your inputs again.')
         return 
       }
-
       const newData = {
         avg_distance: this.avg_distance,
         car: this.car,
@@ -147,22 +144,10 @@ export default {
         body: JSON.stringify(newData)
       })
     },
-    // async fetchInput() {
-    //   const res = await fetch(
-    //     'api/mobility')
-    //   const data = await res.json()
-    //   return data      
-    // },
-    // async fetchInputBasic() {
-    //   const res = await fetch(
-    //     'api/basicdata')
-    //   const data = await res.json()
-    //   return data      
-    // },
+
     async fetchData() {
       let firstCall = fetch('api/mobility');
       let secondCall = fetch('api/basicdata');
-
       Promise.all([firstCall, secondCall])
        .then(values => Promise.all(values.map(value => value.json())))
        .then(finalValues => {
