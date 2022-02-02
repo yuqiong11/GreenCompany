@@ -200,7 +200,7 @@ export default {
 <style scoped>
 .calculation {
   align-content: center;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 .flex-container {
   display:flex;

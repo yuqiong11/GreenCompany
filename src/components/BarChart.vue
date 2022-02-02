@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='chart-container'>
     <BarChart ref="barRef" :chartData="testData" :options="options" />
   </div>
 
@@ -114,5 +114,11 @@ export default ({
 }
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.chart-container {
+  position: relative;
+  margin: auto;
+  height: 40vh;
+  width: 20vw;
 }
 </style>
