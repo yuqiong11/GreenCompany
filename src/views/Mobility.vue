@@ -67,12 +67,12 @@
          kg CO₂ pro Jahr</p>
       </div>
 
-      <div class="flex-container">
+      <div>
           <Barchart  :chartdata_c2='getResult_m'/>
       </div>
     </div>
   </div>
-</div>
+
 
   <div class="container-button">
     <div class="row justify-content-evenly">
@@ -87,6 +87,7 @@
       </div>
     </div>
   </div>
+</div>
 
 </template>
 
@@ -186,10 +187,10 @@ export default {
   align-content: center;
   margin-top: 50px;
 }
-.flex-container {
+/* .flex-container {
   display:flex;
   justify-content: center;
-}
+} */
 .container {
   margin-top: 50px;
 }

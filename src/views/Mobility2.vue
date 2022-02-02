@@ -1,71 +1,89 @@
 <template>
-  <div>
-      <h2>Dienstreisen-Vielreisende</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div>
+          <h2>Dienstreisen-Vielreisende</h2>
+      </div>
+
+      <form >
+          <!-- background data -->
+        <div class="mb-3 row">
+          <label for="inputdistance" class="col-md-3 col-form-label">Anzahl</label>
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" class="form-control" v-model="stuffnum" name="stuffnum"  placeholder="e.g. 1000 ">
+            </div>
+          </div>   
+        </div>
+
+        <div class="mb-3 row">
+          <label for="inputdistance" class="col-md-3 col-form-label">Dienstreisen pro Monat</label>
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" class="form-control" v-model="businesstrips" name="businesstrips"  placeholder="e.g. 1000 ">
+            </div>
+          </div>   
+        </div>
+
+        <div class="mb-3 row">
+          <label for="inputdistance" class="col-md-3 col-form-label">Mittelwert Strecke</label>
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" class="form-control" v-model="avg_distance" name="avg_distance"  placeholder="e.g. 1000 ">
+              <span class="input-group-text">km</span>
+            </div>
+          </div>   
+        </div>
+
+        <!-- different transports -->
+        <div class="mb-3 row">
+          <label for="inputcar" class="col-md-3 col-form-label">Auto</label>
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" class="form-control" v-model="car" name="car"  placeholder="e.g. 1000" min="0" max="100">
+              <span class="input-group-text">%</span>
+            </div>        
+          </div>  
+        </div>
+
+        <div class="mb-3 row">
+          <label for="inputbike" class="col-md-3 col-form-label">Flugzeug</label>
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" class="form-control" v-model="plane" name="plane"  placeholder="e.g. 1000" min="0" max="100">
+              <span class="input-group-text">%</span>
+            </div>       
+          </div>   
+        </div>
+
+        <div class="mb-3 row">
+          <label for="inputpub" class="col-md-3 col-form-label">ÖPNV</label>
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" class="form-control" v-model="pub_transport" name="pub_transport"  placeholder="e.g. 1000" min="0" max="100">
+              <span class="input-group-text">%</span>
+            </div>        
+          </div>  
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-4">
+      <div class="calculation">
+          <p>Dein Fußabdruck:  
+          <span id="result">{{ getResult_m2 }} </span>
+          kg CO₂ pro Jahr</p>
+      </div>
+
+      <div>
+          <Barchart  :chartdata_c3='getResult_m2'/>
+      </div>
+    </div>
   </div>
 
-  <form >
-      <!-- background data -->
-    <div class="mb-3 row">
-      <label for="inputdistance" class="col-md-3 col-form-label">Anzahl</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="number" class="form-control" v-model="stuffnum" name="stuffnum"  placeholder="e.g. 1000 ">
-        </div>
-      </div>   
-    </div>
 
-    <div class="mb-3 row">
-      <label for="inputdistance" class="col-md-3 col-form-label">Dienstreisen pro Monat</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="number" class="form-control" v-model="businesstrips" name="businesstrips"  placeholder="e.g. 1000 ">
-        </div>
-      </div>   
-    </div>
-
-    <div class="mb-3 row">
-      <label for="inputdistance" class="col-md-3 col-form-label">Mittelwert Strecke</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="number" class="form-control" v-model="avg_distance" name="avg_distance"  placeholder="e.g. 1000 ">
-          <span class="input-group-text">km</span>
-        </div>
-      </div>   
-    </div>
-
-    <!-- different transports -->
-    <div class="mb-3 row">
-      <label for="inputcar" class="col-md-3 col-form-label">Auto</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="number" class="form-control" v-model="car" name="car"  placeholder="e.g. 1000" min="0" max="100">
-          <span class="input-group-text">%</span>
-        </div>        
-      </div>  
-    </div>
-
-    <div class="mb-3 row">
-      <label for="inputbike" class="col-md-3 col-form-label">Flugzeug</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="number" class="form-control" v-model="plane" name="plane"  placeholder="e.g. 1000" min="0" max="100">
-          <span class="input-group-text">%</span>
-        </div>       
-      </div>   
-    </div>
-
-    <div class="mb-3 row">
-      <label for="inputpub" class="col-md-3 col-form-label">ÖPNV</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="number" class="form-control" v-model="pub_transport" name="pub_transport"  placeholder="e.g. 1000" min="0" max="100">
-          <span class="input-group-text">%</span>
-        </div>        
-      </div>  
-    </div>
-  </form>
-
-    <div class="container">
+    <div class="container-button">
       <div class="row justify-content-evenly">
         <div class="col-md-1 offset-md-1">
           <SwitchButton link="/mobility" direction="PREVIOUS" />
@@ -78,16 +96,8 @@
         </div>
       </div>
     </div>
+ </div>
 
-    <div class="calculation">
-        <p>Dein Fußabdruck:  
-        <span id="result">{{ getResult_m2 }} </span>
-        kg CO₂ pro Jahr</p>
-    </div>
-
-    <div class="flex-container">
-        <Barchart  :chartdata_c3='getResult_m2'/>
-    </div>
 
 </template>
 
@@ -180,6 +190,15 @@ export default {
 .flex-container {
   display:flex;
   justify-content: center;
+}
+.container {
+  margin-top: 50px;
+}
+.container-button {
+  margin-top: 50px;
+}
+.col-md-8 {
+  margin-top: 80px;
 }
 #result {
   color: green;

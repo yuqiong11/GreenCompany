@@ -217,10 +217,10 @@ export default {
   align-content: center;
   margin-top: 50px;
 }
-.flex-container {
+/* .flex-container {
   display:flex;
   justify-content: center;
-}
+} */
 .container {
   margin-top: 50px;
 }
