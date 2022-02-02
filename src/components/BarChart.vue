@@ -119,6 +119,6 @@ export default ({
   position: relative;
   margin: auto;
   height: 40vh;
-  width: 20vw;
+  width: 30vw;
 }
 </style>

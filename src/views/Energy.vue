@@ -1,88 +1,109 @@
 <template>
 
-
-  <div>
-    <h2>Stromverbrauch</h2>
-  </div>
-  
-  <form >
-    <div class="mb-3 row">
-      <label for="inputStrommix" class="col-md-3 col-form-label">Strommix</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="text" class="form-control" v-model="electricitymix" name="electricitymix"  placeholder="e.g. 1000 ">
-          <span class="input-group-text">MWh</span>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div>
+          <h2>Stromverbrauch</h2>
         </div>
-      </div>   
-    </div>
+        
+        <form >
+          <div class="mb-3 row">
+            <label for="inputStrommix" class="col-md-3 col-form-label">Strommix</label>
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" class="form-control" v-model="electricitymix" name="electricitymix"  placeholder="e.g. 1000 ">
+                <span class="input-group-text">MWh</span>
+              </div>
+            </div>   
+          </div>
 
-    <div class="mb-3 row">
-      <label for="inputökostrom" class="col-md-3 col-form-label">Ökostrom</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="text" class="form-control" v-model="greenpower" name="greenpower"  placeholder="e.g. 1000">
-          <span class="input-group-text">MWh</span>
-        </div>        
-      </div>  
-    </div>
+          <div class="mb-3 row">
+            <label for="inputökostrom" class="col-md-3 col-form-label">Ökostrom</label>
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" class="form-control" v-model="greenpower" name="greenpower"  placeholder="e.g. 1000">
+                <span class="input-group-text">MWh</span>
+              </div>        
+            </div>  
+          </div>
 
 
-    <div>
-      <h2>Heizkosten</h2>
-    </div>
+          <div>
+            <h2>Heizkosten</h2>
+          </div>
 
-    <div class="mb-3 row">
-      <label for="inputStrommix" class="col-md-3 col-form-label">Heizöl</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="text" class="form-control" v-model="fueloil" name="fueloil"  placeholder="e.g. 1000">
-          <span class="input-group-text">mmBtu</span>
-        </div>       
-      </div>   
-    </div>
+          <div class="mb-3 row">
+            <label for="inputStrommix" class="col-md-3 col-form-label">Heizöl</label>
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" class="form-control" v-model="fueloil" name="fueloil"  placeholder="e.g. 1000">
+                <span class="input-group-text">mmBtu</span>
+              </div>       
+            </div>   
+          </div>
 
-    <div class="mb-3 row">
-      <label for="inputökostrom" class="col-md-3 col-form-label">Biogas</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="text" class="form-control" v-model="biogas" name="biogas"  placeholder="e.g. 1000">
-          <span class="input-group-text">mmBtu</span>
-        </div>        
-      </div>  
-    </div>
+          <div class="mb-3 row">
+            <label for="inputökostrom" class="col-md-3 col-form-label">Biogas</label>
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" class="form-control" v-model="biogas" name="biogas"  placeholder="e.g. 1000">
+                <span class="input-group-text">mmBtu</span>
+              </div>        
+            </div>  
+          </div>
 
-    <div class="mb-3 row">
-      <label for="inputStrommix" class="col-md-3 col-form-label">Gas</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="text" class="form-control" v-model="gas" name="gas"  placeholder="e.g. 1000 ">
-          <span class="input-group-text">mmBtu</span>
-        </div>       
-      </div>   
-    </div>
+          <div class="mb-3 row">
+            <label for="inputStrommix" class="col-md-3 col-form-label">Gas</label>
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" class="form-control" v-model="gas" name="gas"  placeholder="e.g. 1000 ">
+                <span class="input-group-text">mmBtu</span>
+              </div>       
+            </div>   
+          </div>
 
-    <div class="mb-3 row">
-      <label for="inputökostrom" class="col-md-3 col-form-label">Holz</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="text" class="form-control" v-model="wood" name="wood"  placeholder="e.g. 1000">
-          <span class="input-group-text">mmBtu</span>
-        </div>        
-      </div>  
-    </div>
-  
-    <div class="mb-3 row">
-      <label for="inputökostrom" class="col-md-3 col-form-label">Fernwärme</label>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input type="text" class="form-control" v-model="districtheat" name="districtheat"  placeholder="e.g. 1000">
-          <span class="input-group-text">kWh</span>
-        </div>       
-      </div>  
-    </div>
-  </form>
+          <div class="mb-3 row">
+            <label for="inputökostrom" class="col-md-3 col-form-label">Holz</label>
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" class="form-control" v-model="wood" name="wood"  placeholder="e.g. 1000">
+                <span class="input-group-text">mmBtu</span>
+              </div>        
+            </div>  
+          </div>
+        
+          <div class="mb-3 row">
+            <label for="inputökostrom" class="col-md-3 col-form-label">Fernwärme</label>
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" class="form-control" v-model="districtheat" name="districtheat"  placeholder="e.g. 1000">
+                <span class="input-group-text">kWh</span>
+              </div>       
+            </div>  
+          </div>
+        </form>
 
-    <div class="container">
+
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="calculation">
+          <p>Dein Fußabdruck:  
+            <span id="result">{{ getResult }} </span>
+            kg CO₂ pro Jahr</p>
+        </div>
+
+        <!-- <div class="flex-container"> -->
+        <div>
+          <Barchart  :chartdata_c1='getResult'/>
+        </div>
+      </div>
+    </div>
+    
+
+
+    <div class="container-button">
       <div class="row justify-content-evenly">
         <div class="col-md-1 offset-md-1">
           <SwitchButton link="/" direction="PREVIOUS" />
@@ -95,16 +116,10 @@
         </div>
       </div>
     </div>
-
-  <div class="calculation">
-    <p>Dein Fußabdruck:  
-      <span id="result">{{ getResult }} </span>
-      kg CO₂ pro Jahr</p>
   </div>
+  
 
-  <div class="flex-container">
-    <Barchart  :chartdata_c1='getResult'/>
-  </div>
+
 
 
 </template>
@@ -205,6 +220,12 @@ export default {
 .flex-container {
   display:flex;
   justify-content: center;
+}
+.container {
+  margin-top: 50px;
+}
+.container-button {
+  margin-top: 50px;
 }
 #result {
   color: green;
