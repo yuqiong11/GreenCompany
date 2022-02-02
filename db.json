@@ -15,12 +15,12 @@
     "result_e": 3977.85
   },
   "Mobility": {
-    "avg_distance": 5,
+    "avg_distance": 32,
     "car": 5,
     "bike": 20,
     "pub_transport": 35,
     "home": 40,
-    "result_m": 345.23
+    "result_m": 2209.45
   },
   "Mobility2": {
     "stuffnum": 5,

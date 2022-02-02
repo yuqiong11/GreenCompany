@@ -227,6 +227,9 @@ export default {
 .container-button {
   margin-top: 50px;
 }
+.col-md-8 {
+  margin-top: 50px;
+}
 #result {
   color: green;
   font-size: 40px
