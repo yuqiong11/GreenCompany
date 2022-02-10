@@ -23,21 +23,21 @@
     "result_m": 2209.45
   },
   "Mobility2": {
-    "stuffnum": 5,
+    "stuffnum": 38,
     "businesstrips": 2,
     "avg_distance": 20,
     "car": 5,
     "plane": 50,
     "pub_transport": 45,
-    "result_m2": 198.94
+    "result_m2": 1511.93
   },
   "Mobility3": {
-    "stuffnum": 72,
+    "stuffnum": 75,
     "businesstrips": 5,
     "avg_distance": 45,
     "car": 10,
     "plane": 10,
     "pub_transport": 80,
-    "result_m3": 1385.11
+    "result_m3": 1442.82
   }
 }
