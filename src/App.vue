@@ -1,17 +1,70 @@
+<script>
+import Basicdata from './views/Basicdata.vue'
+import Energy from './views/Energy.vue'
+import Mobility from './views/Mobility.vue'
+  
+export default {
+  components: {
+    Basicdata,
+    Energy,
+    Mobility
+  },
+  data() {
+    return {
+      currentTab: 'Basicdata',
+      tabs: ['Basicdata', 'Energy', 'Mobility']
+    }
+  }
+}
+</script>
+
 <template>
-  <div id="nav">
-    <router-link to="/">Grunddaten</router-link> |
-    <router-link to="/energy">Energie</router-link> |
-    <router-link to="/mobility">Mobilität I</router-link> |
-    <router-link to="/mobility2">Mobilität II</router-link> |
-    <router-link to="/mobility3">Mobilität III</router-link> |
-    <router-link to="/total">Total</router-link>
+  <div class="demo">
+    <button
+       v-for="tab in tabs"
+       :key="tab"
+       :class="['tab-button', { active: currentTab === tab }]"
+       @click="currentTab = tab"
+     >
+      {{ tab }}
+    </button>
+    <component :is="currentTab" class="tab"></component>
   </div>
-
-  <router-view/>
-
-
 </template>
+
+<style>
+.demo {
+  font-family: sans-serif;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  padding: 20px 30px;
+  margin-top: 1em;
+  margin-bottom: 40px;
+  user-select: none;
+  overflow-x: auto;
+}
+
+.tab-button {
+  padding: 6px 10px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: #f0f0f0;
+  margin-bottom: -1px;
+  margin-right: -1px;
+}
+.tab-button:hover {
+  background: #e0e0e0;
+}
+.tab-button.active {
+  background: #e0e0e0;
+}
+.tab {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+</style>
 
 
 
